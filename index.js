@@ -3,6 +3,14 @@ const mongoose = require("mongoose");
 const app = express();
 require("dotenv").config();
 
+app.listen(3000,'localhost',()=>{
+    console.log("server is running on port 3000");
+})
+
+app.get('/',(req,res)=>{
+    res.send("hello this is the response for ur get request");
+})
+
 mongoose.connect(process.env.DB_URL)
 .then(()=>{
     console.log("connected to the database");
@@ -12,11 +20,4 @@ mongoose.connect(process.env.DB_URL)
     console.error(response);
 })
 
-app.listen(3000,'localhost',()=>{
-    console.log("server is running on port 3000");
-})
-
-app.get('/',(req,res)=>{
-    res.send("hello this is the response for ur get request");
-})
 

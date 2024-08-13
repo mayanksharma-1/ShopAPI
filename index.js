@@ -7,6 +7,10 @@ app.listen(3000,'localhost',()=>{
     console.log("server is running on port 3000");
 })
 
+app.post('/api/products',(req,res)=>{
+    res.send(`got your request: ${req.body} this is my response back`);
+})
+
 app.get('/',(req,res)=>{
     res.send("hello this is the response for ur get request");
 })

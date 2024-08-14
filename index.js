@@ -6,6 +6,7 @@ require("dotenv").config();
 
 
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 app.listen(3000,'localhost',()=>{
     console.log("server is running on port 3000");
@@ -21,7 +22,7 @@ app.get('/api/products', async (req,res)=>{
     }
 })
 
-app.get('/api/product/:id', async (req,res)=>{
+app.get('/api/products/:id', async (req,res)=>{
     try {
         const {id} = req.params;
         const products = await Product.findById(id);
@@ -46,7 +47,7 @@ app.get('/',(req,res)=>{
     res.send("hello this is the response for ur get request");
 })
 
-app.put('/api/product/:id', async (req,res)=>{
+app.put('/api/products/:id', async (req,res)=>{
     try {
         const {id} = req.params;
         const product = await Product.findByIdAndUpdate(id,req.body);
@@ -61,7 +62,7 @@ app.put('/api/product/:id', async (req,res)=>{
     }
 })
 
-app.delete('/api/product/:id',async (req,res) => {
+app.delete('/api/products/:id',async (req,res) => {
     try {
         const {id} = req.params;
         const product = await Product.findByIdAndDelete(id);
